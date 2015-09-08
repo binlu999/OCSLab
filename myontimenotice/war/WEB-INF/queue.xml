@@ -1,0 +1,6 @@
+<queue-entries>
+  <queue>
+    <name>queue-email-inbound</name>
+    <rate>60/s</rate>
+  </queue>
+</queue-entries>
