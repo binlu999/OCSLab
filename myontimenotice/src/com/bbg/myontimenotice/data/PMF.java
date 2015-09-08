@@ -1,4 +1,4 @@
-package com.mkyong;
+package com.bbg.myontimenotice.data;
 
 import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManagerFactory;
