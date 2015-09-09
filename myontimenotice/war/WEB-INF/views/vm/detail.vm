@@ -1,0 +1,3 @@
+<h2>Detail of Feed</h2>
+<p>Id: ${feed.id}</p>
+<p>Title: ${feed.title}</p>

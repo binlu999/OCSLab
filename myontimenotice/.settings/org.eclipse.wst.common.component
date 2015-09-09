@@ -2,6 +2,7 @@
     <wb-module deploy-name="myontimenotice">
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <wb-resource deploy-path="/" source-path="/war"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/resources"/>
         <property name="context-root" value="myontimenotice"/>
         <property name="java-output-path" value="/myontimenotice/war/WEB-INF/classes"/>
     </wb-module>

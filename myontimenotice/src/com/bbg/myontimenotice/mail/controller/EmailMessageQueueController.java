@@ -21,6 +21,7 @@ import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.ImageHtmlEmail;
 import org.apache.commons.mail.resolver.DataSourceUrlResolver;
 import org.apache.commons.mail.util.MimeMessageParser;
+import org.apache.velocity.VelocityContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +30,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bbg.myontimenotice.data.dao.EmailMessageDAO;
 import com.bbg.myontimenotice.data.model.EmailMessage;
+import com.bbg.myontimenotice.util.velocity.VelocityHelper;
 
 @Controller
 @RequestMapping("/qpush")
@@ -91,6 +93,12 @@ public class EmailMessageQueueController {
 
 	private void sendHTMLMail(String toAddress, String subject) throws MessagingException, UnsupportedEncodingException {
 		 String msgBody = "We received your email subjected "+subject;
+		 
+		VelocityContext context=new VelocityContext();
+		context.put("subject", subject);
+		msgBody=VelocityHelper.merge(context, "/vm/in_bounf_eamil_ack.vm");
+		 
+		log.info("Message body by velocity:"+msgBody);
 		Properties props = new Properties();
         Session session = Session.getDefaultInstance(props, null);
         Message msg = new MimeMessage(session);
@@ -101,7 +109,7 @@ public class EmailMessageQueueController {
         msg.setText(msgBody);
         
         String htmlBody = "Hello <br> You messmage is confirmed<hr>"+subject+"<hr> <img src=\"http://www.apache.org/images/feather.gif\"> ....";
-
+        htmlBody=msgBody;
         byte[] attachmentData;  // ...
 
         Multipart mp = new MimeMultipart();
