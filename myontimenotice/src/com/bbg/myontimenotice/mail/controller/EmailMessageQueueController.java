@@ -39,6 +39,7 @@ public class EmailMessageQueueController {
 	private static final Logger log = Logger
 			.getLogger(EmailMessageQueueController.class.getName());
 
+	//http://localhost:8888/mvc/qpush/queue-email-inbound/123
 	@RequestMapping(value = "/queue-email-inbound/{key}", method = RequestMethod.GET, headers = "Accept=application/json")
 	public @ResponseBody String getQueueEMailInbound(@PathVariable String key) {
 		log.info("Received GET request key=" + key);
